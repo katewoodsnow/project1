@@ -16,55 +16,65 @@
         
         <link href="static/style.css" rel="stylesheet">
         
-        <title>CS50w Project1: {% block title %}{% endblock %}</title>
+        <title>{% block title %}{% endblock %}</title>
     </head>
     
-    <body id="layout">
-        <header>
+    <body>
+        <div>
              <!--Grid Container-->
-            <div class="container">
                 <!-- navbar-->
                 <!--navbar becomes vertical on screens-->
-                <nav class="navbar navbar-expand-md navbar-default bg-transparent">
+                <nav class="navbar navbar-expand-md mynavbar">
                     <!--navbar brand-->
                     <!-- Toggler/collapsibe Button -->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"><span class="navbar-toggler-icon"></span></button>
-                    <a class="navbar-brand" href="index.html"><span class="red">lftb</span><div span class="green">.com</span></div><div class="logo-image">
-                    </div></a>
+                    <a class="navbar-brand" href="/">lfab<div class="logo-image">
+                        <img src="static/logo.jpg" class="img-fluid"></div></a>
             
-                    <!-- using jinja, if the object session exists, the user is logged in show this page to user else show a different page -->
-                    {% if session.user_id%}
+                    <!-- using jinja, if the object session exists, the user is logged in show this page to user else show a different page-->
+                    {% if session.id %}
                     <!--navbar links on the center of the page-->
                     <div class="collapse navbar-collapse" id="navbar">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="search.html">Search Book</a>
+                                <a class="nav-link" href="/book">Book Review</a>
                             </li>
                         </ul>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            <button class="btn btn-custom my-2 my-sm-0" type="submit">Search</button>
                           </form>
-                        <ul>
-                            <li class="nav-item"><a class="navbar-right" href="/logout">Logout</a></li></nav>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="navbar-right" href="/logout">Logout</a>
+                            </li>
                         </ul>  
-                          
-                            <h3>Hello {{session.first_name}}</h3>
+                        
 
                     {% else %}
-                        <!-- set spacing of nav bar links -->
-                        <div class="collapse navbar-collapse" id="navbar">
-                            <ul class="navbar-nav mx-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="Register.html">Register</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="login.html">Log in</a>
-                                </li>
-                            </ul>
-                    {% endif %}
-                </div>
-            </nav>
+                        <!-- set spacing of nav bar links-->
+                    <div class="collapse navbar-collapse" id="navbar">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link pr-4" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pl-4" href="/register">Get Started</a>
+                            </li>
+                        </ul>
+                    <!--{% endif %}-->   
+                    </div>
+                </nav>
+        </div>
+                {% if get_flashed_messages() %}
+                    <div class="alert alert-info text-center" role="alert">
+                        {{ get_flashed_messages() | join(" ") }}
+                    </div>
+                {% endif %}
+                
+                {% block body %}    
+                {% endblock %}
+        
         
         <!-- Footer -->
         
@@ -74,25 +84,10 @@
                     <div class="col-md-12 footer whiteText">
                         <!-- Content -->
                         <h5>Contact</h5>
-                        <p>Barton under Needwood, Burton-on-Trent, Staffordshire. DE13 8LH</p>
+                        <p>Page Lane, Reading</p>
                         <p><a href="mailto: kate.wood@hotmail.co.uk">kate.wood@hotmail.co.uk</a></P>
                         <p><a href="tel:123-456-7890">07497111813</a></p>
                    
-                        <!-- Links -->
-                        <ul>
-                            <li>
-                                <a href="portfolio.html">Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="about.html">About</a>
-                            </li>
-                            <li>
-                                <a href="cv.html">CV</a>
-                            </li>
-                            <li>
-                                <a href="contact.html">Contact</a>
-                            </li>
-                        </ul>
                         <!-- Copyright -->
                         <div class="footer-copyright">© 2020 Copyright:
                             <a href="info@katewood.uk">info@katewood.uk</a>
@@ -105,21 +100,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
 
-
-        {% if get_flashed_messages() %}
-            <header>
-                <div class="alert alert-primary border text-center" role="alert">
-                    {{ get_flashed_messages() | join(" ") }}
-                </div>
-            </header>
-        {% endif %}
-
-        <!-- inject content from a child template into the parent template -->
-        <main class="container p-5">
-            {% block main %}{% endblock %}
-        </main>
 
     </body>
 
