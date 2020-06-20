@@ -1,5 +1,5 @@
-$colorPrimary: rgb(255, 245, 159);
-$colorSecondary: blue;
+$colorPrimary: rgb(255, 238, 180);
+$colorSecondary: #006eff;
 $colorThird: red;
 $colorFourth: white;
 $colorFifth: black;
@@ -22,62 +22,96 @@ $colorFifth: black;
     height: 5%; 
 }
 
-footer{
-    a{
+a{
     color: $colorSecondary;
 }
-    a:hover{
-        color: $colorThird;
-    }
+a:hover{
+    color: $colorThird;
+}
+
+footer{ background-color: rgb(99, 48, 0);
+}
+
+h1, h2{
+    text-align: center;
+    color: $colorFourth;
+    font-size: 3em;
+    margin-bottom: 2em;
 }
 
 .container-headerIndex{
     background-image: url("book1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-
-    h1, h2{
-        text-align: center;
-        color: $colorFourth;
-        font-size: 3em;
-        margin-bottom: 2em;
-    }
 }
 
-.container-primary{
+.container-headerBook{
+    background-image: url("bookReview1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 200px;
+}
+
+.container-register-login{
     background-color: $colorPrimary;
 }
 
-.container-index{
+.container-primary{
     background-color: rgb(255, 249, 191);
-    padding-bottom: 200px;
+    padding-bottom: 150px;
     
-    h3{
+    h3, h4{
         text-align: center;
-        color: $colorThird;
+        color: $colorSecondary;
         font-size: 2em;
+    }
+    h4{
+        font-size: 20px;
         padding-bottom: 100px;
     }
+    h6{
+        color: $colorSecondary;
+    }
+}
+
+#container-indexLogout{
+    padding-top: 100px;
 }
     
 %mybutton{
-        color: $colorFifth;
+        color: $colorThird;
         border-color: $colorSecondary;
         background-color: transparent;
+        box-shadow: none !important;
     }
 
 .btn-custom{
     @extend %mybutton;
+    background-color: $colorSecondary;
+    color: $colorFifth;
 }
 
 .btn-custom:hover{
-    @extend %mybutton;
-    background-color: transparent;
-    color: $colorThird;
+    @extend %mybutton;  
 }
 
-.btn-custom:active{
+.btn-custom:focus{
     @extend %mybutton;
-    box-shadow: none;
 }
 
+#goodreadsimg {
+    width: 10%; 
+    height: 5%;
+}
+
+#reviews{
+    padding-left: 125px;
+}
+
+textarea {
+    box-shadow: none !important;;
+}
+
+.dropdown-divider{
+    color: black;
+}

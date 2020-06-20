@@ -1,21 +1,70 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    search book
+    book
 {% endblock %}
 
 {% block body %}
- <!--grid row-->
- <div class="row justify-content-start">
-    <!--grid column-->
-    <div class="col-md-6 col-sm-12 text-center pr-5">
-        <h1>Search for a book</h1>
+
+<!--Page Header-->
+<div class= "container-fluid container-headerBook">
+    <h1 class="text-left pr-5 pt-5">Book Review</h1>
+</div>
+
+<!--Display book details-->
+<div class="container-fluid container-primary">
+    <div class="row justify-content-start">
+        <div class="col-md-6 col-sm-12 text-center pr-5">
+        <!--rows is a variable passed in from python application.py-->
+            <h5 class = "pt-5"><strong>{{rows.title}}</strong></h5>
+            <h6 class = "pb-3">by {{rows.author}}</h6>
+            <p><img class="mb-3" id = "goodreadsimg" src="../static/goodreads.png"><small>Average rating: {{goodreads_average_rating }} . {{goodreads_work_ratings_count }} ratings (goodreads)</small></p> 
+            <!--Displays image of the book-->
+            <img src="http://covers.openlibrary.org/b/isbn/{{rows.isbn}}-M.jpg" alt = "book image" width="130px">
+            <p class = "pt-3"><small><strong>Year: </strong>{{rows.year}}</small></p>
+            <p><small><strong>Isbn: </strong>{{rows.isbn}}</small></p>  
+        </div>
+    
+        <!--User can leave a review-->
+        <div class="col-md-6 col-sm-12 text-center pr-5">
+            <h5 class = py-5>Leave a review</h5>
+            <form method="post">
+                <div class="form-group">
+                    <select class="form-control" name="ratings" required>
+                        <option selected value disabled> -- select rating -- </option>
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select> 
+                </div>
+                <div class="form-group">
+                    <textarea type="text" class="form-control" name="description" placeholder= "Write your review..."></textarea>
+                </div>
+                <div class= "form-group">
+                    <button class="btn btn-custom btn-sm form-control" type='submit'>submit</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="col-md-6 col-sm-12 text-center pr-5">
-        <input type="text" placeholder="Search..">
-    </div> 
-        
+
+<!--display reviews from application-->
+    <div class="row justify-content-start">
+        <div class="col-md-12 pr-5" id = "reviews">
+            <h5 class = py-5>Reviews</h5>
+            {% if rows3 %}
+                {% for row in rows3 %}
+                    <h6>{{row.username}}</h6>
+                    <p><small>Ratings: {{row.ratings}} {{row.date}}</small></p>
+                    <p>{{row.description}}</p>
+                    <div class="dropdown-divider"></div>
+                {% endfor %}
+            {% else %}
+                <p>There are no reviews for this book</p>
+            {% endif %}
+         </div>
+    </div>
 </div>
-</header>  
-</div>
+
 {% endblock %} 

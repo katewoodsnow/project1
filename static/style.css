@@ -1,5 +1,5 @@
 .mynavbar {
-  background-color: #fff59f;
+  background-color: #ffeeb4;
 }
 
 .mynavbar a {
@@ -11,7 +11,7 @@
 }
 
 .mynavbar .navbar-brand {
-  color: blue;
+  color: #006eff;
 }
 
 .logo-image {
@@ -19,12 +19,23 @@
   height: 5%;
 }
 
-footer a {
-  color: blue;
+a {
+  color: #006eff;
 }
 
-footer a:hover {
+a:hover {
   color: red;
+}
+
+footer {
+  background-color: #633000;
+}
+
+h1, h2 {
+  text-align: center;
+  color: white;
+  font-size: 3em;
+  margin-bottom: 2em;
 }
 
 .container-headerIndex {
@@ -33,42 +44,69 @@ footer a:hover {
   background-size: cover;
 }
 
-.container-headerIndex h1, .container-headerIndex h2 {
-  text-align: center;
-  color: white;
-  font-size: 3em;
-  margin-bottom: 2em;
-}
-
-.container-primary {
-  background-color: #fff59f;
-}
-
-.container-index {
-  background-color: #fff9bf;
+.container-headerBook {
+  background-image: url("bookReview1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   padding-bottom: 200px;
 }
 
-.container-index h3 {
+.container-register-login {
+  background-color: #ffeeb4;
+}
+
+.container-primary {
+  background-color: #fff9bf;
+  padding-bottom: 150px;
+}
+
+.container-primary h3, .container-primary h4 {
   text-align: center;
-  color: red;
+  color: #006eff;
   font-size: 2em;
+}
+
+.container-primary h4 {
+  font-size: 20px;
   padding-bottom: 100px;
 }
 
-.btn-custom, .btn-custom:hover, .btn-custom:active {
-  color: black;
-  border-color: blue;
-  background-color: transparent;
+.container-primary h6 {
+  color: #006eff;
 }
 
-.btn-custom:hover {
-  background-color: transparent;
+#container-indexLogout {
+  padding-top: 100px;
+}
+
+.btn-custom, .btn-custom:hover, .btn-custom:focus {
   color: red;
+  border-color: #006eff;
+  background-color: transparent;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
-.btn-custom:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+.btn-custom {
+  background-color: #006eff;
+  color: black;
+}
+
+#goodreadsimg {
+  width: 10%;
+  height: 5%;
+}
+
+#reviews {
+  padding-left: 125px;
+}
+
+textarea {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.dropdown-divider {
+  color: black;
 }
 /*# sourceMappingURL=style.css.map */

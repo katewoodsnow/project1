@@ -6,36 +6,74 @@
 
 {% block body %}
 
+<!--header-->
 <div class= "container-fluid container-headerIndex py-5">
     <h1>Look for a Book</h1>
     <h2>Be Inspired</h2>
 </div>
   
-<div class="container-fluid container-index">
+
+<div class="container-fluid container-primary" id="container-indexLogout">
+    <!--If user is logged in-->
     {% if session.id %} 
-    <h3 class="pt-5">Hello {{session.username}}</h3>
-    <!--grid row-->
- <div class="row py-5 justify-content-center">
-    <!--grid column-->
-    <div class="col-md-3 col-sm-12">
-        <h4>Search for a book</h4>
-    </div>
-    <div class="col-md-3 col-sm-12">
-        <input type="text" placeholder="Search..">
-    </div> 
-</div>
-</div>
-{% else %}
-    
-    <div class="row text-center py-5">
-        <div class="col-md-6">
-            <a class="btn btn-lg btn-custom mt-3 mb-5" href="/register" role="button">Get Started</a>
+        <h3>Hello {{session.username}}</h3>
+        <h4 class= "pt-3">Discover your new book today</h4>
+        <div class="row pt-3 justify-content-center">
+            <div class="col-md-4">
+                <!-- Search for a book form -->
+                <form action= "{{ url_for ('index') }}" method="POST">
+                    <div class="form-group text-center">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input type="text" class="form-control" name="query" placeholder="ISBN, Title or Author">
+                        <small class="form-text text-muted pb-3">Example: 012874569, Dune or Frank Herbert</small>
+                        <button class="btn btn-custom" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-md-6">
-            <a class="btn btn-lg btn-custom mt-3 mb-5" href="/login" role="button">Login</a>
+ 
+    <!--If a search query is made by the user display the number of books found-->
+        {% if request.form.get("query") %} 
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class= "pt-5 text-center">Search Results</h5>
+                    <p class="text-muted text-center pb-5">{{ search_count }} book(s) found in this search</p>
+                </div>
+            </div>
+            <!--lists all the books that match the search made by the user by looping through the rows provided by the database
+            query made in application.py in the index function and passing the rows to this html page -->
+            <div class="row text-center">
+                <div class="col-md-12">      
+                    {% for row in rows %}
+                        <ul class="list-unstyled">
+                            <li class = "py-4">
+                             <!--this links to the url for the book function in app.py, passing in the value(row.isbn)of the 
+                            variable isbn, (the value is the isbn from the row of the particular book you want to click
+                            on from the database query made in application.py index function.) into the book function 
+                            via the url so the url knows which book to display in the book.html page-->
+                                <a href="{{url_for('book', isbn=row.isbn)}}">
+                                    <strong>{{ row.title }}</strong> by {{ row.author }} <small> {{ row.year }} ISBN: {{ row.isbn }}</small>
+                                </a>
+                            </li>
+                        </ul>    
+                    {% endfor %}   
+                </div>
+            </div> 
+        </div>   
+        {% endif %}
+    <!--Ig not logged in-->
+    {% else %}
+        <div class="row pt-5 pb-2">
+            <div class="col-12 text-center">
+                <a class="btn btn-lg btn-custom mt-5 mb-3" href="/register" role="button">Register</a>
+            </div>
         </div>
-    </div>
+        <div class="row pb-5">
+            <div class="col-12 text-center">
+                <a class="btn btn-lg btn-custom mt-5 mb-5" href="/login" role="button">Login</a>
+            </div>
+        </div>
 </div>
-{% endif %}
+    {% endif %}
  
 {% endblock %}

@@ -6,7 +6,7 @@
 
 {% block body %}
 
-<div class="container-primary pt-5">
+<div class="container-register-login pt-5">
     <div class="row py-5">
         <div class="col-md-12">
             <h3 class="text-center pb-3">Registration Form</h3>
@@ -14,27 +14,25 @@
     </div>
     <!--form submitted to the register function in application.py-->
     <form action= "{{ url_for ('register') }}" method="post">
-    <div class="form-row justify-content-md-center">
-        <div class="col-md-6 form-group">
-            <input autocomplete="off" class="form-control" name="username" placeholder="Username" type="text">
+        <div class="form-row justify-content-md-center">
+            <div class="col-md-6 form-group">
+                <input autocomplete="off" class="form-control" name="username" placeholder="Username" type="text">
+            </div>
         </div>
-    </div>
-    <div class="form-row justify-content-md-center mb-5">
-        <div class="col-md-3 form-group">
-            <input class="form-control" name="password" id = "pass" placeholder="Password" type="password">
+        <div class="form-row justify-content-md-center mb-5">
+            <div class="col-md-3 form-group">
+                <input class="form-control" name="password" id = "pass" placeholder="Password" type="password">
+            </div>
+            <div class="col-md-3 form-group">
+                <input class="form-control" name="confirmation" id = "confirm_pass" placeholder="Confirmation password" type="password"> 
+            </div>
         </div>
-        <div class="col-md-3 form-group">
-            <input class="form-control" name="confirmation" id = "confirm_pass" placeholder="Confirmation password" type="password"> 
+        <div class="form-row justify-content-md-center">
+            <div class="col-md-6 form-group text-center">
+                <button class="btn btn-custom btn-lg" type="register">Register</button>
+                <p>Already a member? <a href="/login">Sign in</a></p>
+            </div>
         </div>
-    </div>
-    <div class="form-row justify-content-md-center">
-        <div class="col-md-6 form-group text-center">
-            <button class="btn btn-custom btn-lg" type="register">Register</button>
-            <p>Already a member? <a href="/login">Sign in</a></p>
-
-        </div>
-    </div>
-</form>
+    </form>
 </div>
-
 {% endblock %}
